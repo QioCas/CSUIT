@@ -1,0 +1,23 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Tóm tắt đề bài}{2}{section.1}%
+\contentsline {section}{\numberline {2}Subtask 1 ($n, m \leq 10^3$)}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Phương pháp thiết kế thuật toán sử dụng}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Tại sao sử dụng}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Sử dụng như thế nào trong bài toán}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Phân tích độ phức tạp}{2}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Độ phức tạp thời gian}{2}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Độ phức tạp không gian}{3}{subsubsection.2.4.2}%
+\contentsline {section}{\numberline {3}Subtask 2 ($W, H \leq 10^3$)}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Phương pháp thiết kế thuật toán sử dụng}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Tại sao sử dụng}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Sử dụng như thế nào trong bài toán}{3}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Phân tích độ phức tạp}{3}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Độ phức tạp thời gian}{3}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Độ phức tạp không gian}{4}{subsubsection.3.4.2}%
+\contentsline {section}{\numberline {4}Subtask 3 (Không ràng buộc bổ sung)}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Phương pháp thiết kế thuật toán sử dụng}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Tại sao sử dụng}{4}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Sử dụng như thế nào trong bài toán}{4}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Phân tích độ phức tạp}{5}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Độ phức tạp thời gian}{5}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Độ phức tạp không gian}{5}{subsubsection.4.4.2}%

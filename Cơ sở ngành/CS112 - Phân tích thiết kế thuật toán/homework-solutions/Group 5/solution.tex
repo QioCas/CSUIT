@@ -1,0 +1,444 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc} % để gõ tiếng Việt
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\geometry{margin=2.5cm}
+\setlength{\parskip}{0.75em}
+\setlength{\parindent}{0pt}
+
+
+\definecolor{bgcolor}{HTML}{fdf6e3}
+\definecolor{textcolor}{HTML}{586e75}
+\definecolor{keywordcolor}{HTML}{d33682}
+\definecolor{typecolor}{HTML}{268bd2}
+\definecolor{stringcolor}{HTML}{cb4b16}
+\definecolor{commentcolor}{HTML}{859900}
+\usepackage{minted}
+\lstset{
+	language=Python,
+	basicstyle=\ttfamily\small,
+	backgroundcolor=\color{gray!5},
+	frame=single,
+	numbers=left,
+	numberstyle=\tiny,
+	keywordstyle=\color{blue},
+	commentstyle=\color{gray},
+	stringstyle=\color{orange},
+	breaklines=true,
+	showstringspaces=false,
+	tabsize=4
+}
+
+\begin{document}
+	
+	\begin{figure}
+		\centering
+
+		{\Large \textbf{Bài tập về nhà - Thuật toán Phân tán}}\\[1cm]
+		{\large Thành viên:}\\[0.2cm]
+		\begin{tabular}{ll}
+			1. & Hà Xuân Thiện - 24520031 \\
+			2. & Trần Quang Trường - 24521901 \\
+		\end{tabular}\\[0.5cm]
+
+		{\large \today}
+	\end{figure}
+	
+	\tableofcontents
+	
+	\newpage
+	\section{Subtask 1 ($n, q \le 1000$)}
+	
+	\subsection{Mô tả Thuật Toán}
+	
+	\textbf{Quan sát 1:}  
+	\textbf{Ta có thể biến đổi bài toán thành bài toán đồ thị.}
+	
+	Cụ thể:  
+	Ta coi mỗi máy tính là một đỉnh của đồ thị.  
+	Nếu có thể truyền dữ liệu trực tiếp giữa hai máy tính $u$ và $v$ thì tồn tại một cạnh $(u, v)$ có trọng số $|u - v|$.  
+	Lúc này, bài toán trở thành tìm kiếm đường đi có tổng trọng số nhỏ nhất (đường đi tối ưu) đi từ $s$ đến $t$.
+	
+	\textbf{Định nghĩa:}  
+	\begin{itemize}
+		\item Độ dài đường đi là số lượng cạnh đi qua của đường đi đó.  
+		\item Gọi $E$ là tập cạnh của đồ thị. Nếu cạnh $(u, v)$ thuộc đồ thị ta nói $(u, v) \in E$, ngược lại $(u, v) \notin E$.
+	\end{itemize}	
+	\textbf{Nhận xét 1:}  
+	\textbf{Nếu $s \ne t$ và $(s, t) \in E$ thì độ dài đường đi tối ưu bằng $1$.}
+	
+	\textit{Chứng minh:}  
+
+	\begin{enumerate}
+		\item Xét đường đi trực tiếp đi từ $s$ đến $t$, chi phí bằng $|s - t|$.  
+	 	\item Xét đường đi thông qua một đỉnh trung gian $u$ ($(s, u)$, $(u, t)$ $\in E$), thì chi phí bằng $|s - u| + |u - t|$.
+	
+	Đặt $a = s - u$, $b = u - t$.  
+	Theo bất đẳng thức tam giác:
+	\[
+	|a + b| \le |a| + |b|
+	\Rightarrow |s - u + u - t| \le |s - u| + |u - t|
+	\Rightarrow |s - t| \le |s - u| + |u - t|
+	\]
+	
+		\item Xét đường đi thông qua hai đỉnh trung gian $u, v$ (($s, u$), ($u, v$), ($v, t$) $\in E$), chi phí bằng $|s - u| + |u - v| + |v - t|$.
+	Theo bất đẳng thức tam giác:
+	\[
+	|s - t| \le |s - u| + |u - v| + |v - t|
+	\]
+	
+	\item Tương tự, với mọi đường đi qua $k$ đỉnh trung gian $u_1, \ldots, u_k$:
+	\[
+	|s - t| \le |s - u_1| + \sum_{i=1}^{k-1}|u_i - u_{i+1}| + |u_k - t|
+	\]
+
+	
+	\textbf{Kết luận:} đường đi tối ưu là đường đi đi trực tiếp từ $s$ đến $t$ với chi phí $|s-t|$. Độ dài đường đi tối ưu bằng $1$.
+	\end{enumerate}		
+	\textbf{Nhận xét 2:}  
+	\textbf{Độ dài đường đi tối ưu đi từ $s$ đến $t$ không quá $2$.}
+	
+	\textit{Chứng minh:}
+	
+	\textbf{Trường hợp 1.} Nếu $s = t$:  
+	Đường đi tối ưu có chi phí $|s - t| = 0$. Độ dài đường đi tối ưu bằng $0$.
+	
+	\textbf{Trường hợp 2.} Nếu $s \ne t$ và $(s, t) \in E$:  
+	Theo nhận xét 1, độ dài đường đi tối ưu bằng $1$.
+	
+	\textbf{Trường hợp 3.} Nếu $s \ne t$ và $(s, t) \notin E$:  
+	
+	\begin{itemize}
+	
+	\item Gọi tập giao thức là $\mathcal{P} = \{B, G, R, Y\}$.  
+	\item Mỗi đỉnh chứa một tập giao thức $|\mathcal{P}_i| = 2$, $\mathcal{P}_i \in \mathcal{P}$.  
+	\item Nếu $(u, v) \in E$ thì $\mathcal{P}_u \cap \mathcal{P}_v \ne \varnothing$, ngược lại $\mathcal{P}_u \cap \mathcal{P}_v = \varnothing$.
+	
+	\item Từ nhận xét 1, ta có chứng minh đường đi tối ưu luôn có dạng:
+	\[
+	\{ u_1, u_2, \ldots, u_k \}
+	\]
+	với $k > 2, s = u_1, t = u_k$ và $|\mathcal{P}_i \cap \mathcal{P}_{i+1}| = 1, \forall i < k$ - thỏa mãn điều kiện:
+	\begin{itemize}
+		\item Với mọi $i < k, j \in [i + 2, k]$ thì $(u_i, u_j) \notin E$, hay $\mathcal{P}_i \cap \mathcal{P}_j = \varnothing$.
+	\end{itemize}
+	
+	Xét đường đi tối ưu $\{s = u_1, u_2, u_3 = t\}$:  
+	\begin{itemize}
+		\item Để tồn tại, cần có $u_2$ sao cho:
+	\[
+	|\mathcal{P}_s \cap \mathcal{P}_{u_2}| = 1, \quad |\mathcal{P}_{u_2} \cap \mathcal{P}_t| = 1
+	\]
+	\item Suy ra: $\mathcal{P}_{u_2} = \{a, b\}$ với $a \in \mathcal{P}_s$, $b \in \mathcal{P}_t$.
+	\end{itemize}
+
+	$\Rightarrow$ Do đó, tồn tại đường đi tối ưu có độ dài bằng $2$ \textbf{khi và chỉ khi} tồn tại $u_2 = \{a, b\}$ sao cho $a \in \mathcal{P}_s, b \in \mathcal{P}_t$. 
+	
+	Xét đường đi $\{s = u_1, u_2, u_3, u_4 = t\}$:
+	\begin{itemize}
+		\item Để tồn tại đường đi thỏa mãn, cần tồn tại $u_2$, $u_3$ sao cho:
+		\begin{align*}
+			&|\mathcal{P}_s \cap \mathcal{P}_{u_2}| = 1, \\
+			&|\mathcal{P}_{u_2} \cap \mathcal{P}_{u_3}| = 1, \\
+			&|\mathcal{P}_{u_3} \cap \mathcal{P}_{t}| = 1, \\
+			&\mathcal{P}_{s} \cap \mathcal{P}_{u_3} = \varnothing, \\
+			&\mathcal{P}_{s} \cap \mathcal{P}_{t} = \varnothing, \\
+			&\mathcal{P}_{u_2} \cap \mathcal{P}_{t} = \varnothing.
+		\end{align*}
+		
+		\item Xét $\mathcal{P}_s = \{a, b\}$.
+		
+		$\Rightarrow$ $\mathcal{P}_{u_3} = \{c, d\}$ (do $\mathcal{P}_{s} \cap \mathcal{P}_{u_3} = \varnothing$).
+		
+		$\Rightarrow$ $\mathcal{P}_{t} = \{c, d\}$ (do $\mathcal{P}_{s} \cap \mathcal{P}_{t} = \varnothing$).
+		
+		$\Rightarrow\ \mathcal{P}_{u_3} \cup \mathcal{P}_{t} = \{c, d\}$, hay $|\mathcal{P}_{u_3} \cup \mathcal{P}_{t}| = 2$, 
+		mâu thuẫn với điều kiện $|\mathcal{P}_{u_3} \cap \mathcal{P}_{t}| = 1$.
+
+		$\Rightarrow$ Do đó, không tồn tại đường đi tối ưu độ dài bằng $3$ thỏa mãn điều kiện.	
+
+	\end{itemize}
+	Chứng minh tương tự, không tồn tại đường đi tối ưu có mọi độ dài lớn hơn $3$.
+	
+	$\Rightarrow$ Do đó, nếu tồn tại đường đi từ $s$ đến $t$, thì độ dài tối ưu $= 2$.
+	\end{itemize}
+
+	\subsection{Cài Đặt Thuật Toán}
+	
+	Ta biểu diễn $\mathcal{P}_u$ dưới dạng một mask 4 bit $ms_u$.  
+	
+	Nếu $\mathcal{P}_u \cap \mathcal{P}_v = \varnothing$ thì $ms_u \& ms_v = 0$. 
+	Ngược lại, $ms_u \& ms_v \ne 0$.
+\begin{lstlisting}
+code_str = "BGRY"
+idx = {c: 1 << i for i, c in enumerate(code_str)}
+def get_idx(c):
+	return idx[c]
+ms = [get_idx(s[i][0]) | get_idx(s[i][1]) for i in range(n)]
+\end{lstlisting}
+	Với mỗi truy vấn $(u, v)$:
+	\begin{itemize}[nosep]
+		\item Nếu $u = v$: đáp án $= 0$.
+		\item Nếu $ms_u \& ms_v \ne 0$: đáp án $= |u - v|$.
+		\item Ngược lại: đáp án $= \min_{k}|k - u| + |k - v|$ với điều kiện $ms_u \& ms_k \ne 0$ và $ms_v \& ms_k \ne 0$. Nếu không tồn tại $k$ thỏa: in $-1$.
+		\end{itemize}
+
+\begin{lstlisting}
+INF = 1000000000
+for i in range(q):
+	u, v = map(int, input().split())
+	u = u - 1
+	v = v - 1
+	ans = INF
+	if u == v:
+		ans = 0
+	elif ms[u] & ms[v]:
+		ans = abs(u-v)
+	else:
+		for k in range(n):
+			if ms[k] & ms[u] and ms[k] & ms[v]:
+				ans = min(ans, abs(u - k), abs(k - v))
+	print(ans)
+\end{lstlisting}
+	
+	\subsection{Phân Tích Độ Phức Tạp}
+	
+	\subsubsection{Độ phức tạp thời gian.} 
+	Ở bước \textbf{tiền xử lý}, ta cần xây dựng mảng $ms_u$ với số phép thao tác là $2 \cdot n$. 
+	Do đó, độ phức tạp là $\Theta(n)$.
+	
+	Ở mỗi truy vấn, hai trường hợp đầu chỉ mất một thao tác thực hiện, 
+	nhưng với trường hợp thứ ba, ta mất $n$ thao tác để duyệt mọi phần tử trong mảng, 
+	do đó mất độ phức tạp $\Theta(n)$.
+	
+	Tổng độ phức tạp \textbf{xử lý các truy vấn} là $\Theta(q \cdot n)$.
+	
+	Do đó, \textbf{độ phức tạp thời gian} của bài toán là 
+	\[
+	\langle \Theta(n),\, \Theta(q \cdot n) \rangle \quad \text{hay} \quad \Theta(n + q \cdot n).
+	\]
+	
+	\subsubsection{Độ phức tạp không gian.}
+	Ở bước \textbf{tiền xử lý}, ta cần tạo một mảng $ms_u$, 
+	do đó mất độ phức tạp không gian là $\Theta(n)$.
+	
+	Ở bước \textbf{xử lý truy vấn}, ta không tạo thêm gì, 
+	nên độ phức tạp không gian là $\Theta(1)$.
+	
+	Vì vậy, \textbf{độ phức tạp không gian} của bài toán là 
+	\[
+	\langle \Theta(n),\, \Theta(1) \rangle \quad \text{hay} \quad \Theta(n).
+	\]
+
+	\newpage
+	\section{Subtask 2 ($n, q \le 10^5$)}
+	
+	\subsection{Mô tả Thuật Toán}
+	
+	Không mất tính tổng quát, giả sử $s \le t$.  
+	
+	\textbf{Nhận xét 4:}  
+	Nếu $(s, t) \notin E$ và tồn tại đường đi tối ưu, thì đường đi tối ưu $\{s, u, t\}$ có $u$ là đỉnh gần $s$ nhất hoặc gần $t$ nhất về bên trái hoặc phải.  
+	
+	Gọi:
+	\[
+	L[x] = \max \{ i < s \mid |\mathcal{P}_i \cap \mathcal{P}_s| = 1 \}, \quad
+	R[x] = \min \{ i > s \mid |\mathcal{P}_i \cap \mathcal{P}_s| = 1 \}
+	\]
+	Khi đó $u \in \{L[s], R[s], L[t], R[t]\}$.
+	
+	\textit{Chứng minh:}  
+	
+	Xét $3$ trường hợp của $u$:
+	
+	\begin{itemize}
+		\item \textbf{Nếu $u \le s$ thì:}
+		\[
+		s - L[s] \le s - i \quad \forall i \le s, \; |\mathcal{P}_{i} \cap \mathcal{P}_{s}| = 1.
+		\]
+		Do đó, 
+		\[
+		\Rightarrow u = L[s].
+		\]
+		
+		\item \textbf{Nếu $s \le u \le t$ thì:}
+		
+		Mọi $u$ thỏa mãn đều tạo ra đường đi tối ưu.
+		\[
+		\Rightarrow u = R[s] \text{ hoặc } u = L[t] \text{ đều thỏa mãn.}
+		\]
+		
+		\item \textbf{Nếu $t \le u$ thì:}
+		\[
+		R[t] - t \le i - t \quad \forall t \le i, \; |\mathcal{P}_{t} \cap \mathcal{P}_{i}| = 1.
+		\]
+		Do đó, 
+		\[
+		\Rightarrow u = R[t].
+		\]
+	\end{itemize}
+	
+	Suy ra, 
+	\[
+	u \in \{ L[s],\, R[s],\, L[t],\, R[t] \}.
+	\]
+	
+	
+	\subsection{Cài Đặt Thuật Toán}
+	
+	Để xây dựng $L[x], R[x]$, ta duy trì mảng $last[4]$ lưu hai vị trí cuối cùng có bit thứ $b$ bật và mask của hai vị trí là khác nhau.  
+	
+	Ban đầu $L[x] = -1, R[x] = n, \forall x$.
+\begin{lstlisting}
+last = [(-1, -1) for i in range(4)]
+L = [-1 for i in range(n)]
+R = [n for i in range(n)]
+\end{lstlisting}
+	Tại vị trí $i$, nếu bit $b$ bật thì:
+	\[
+	p = last[b] \text{ sao cho } ms_p \ne ms_i
+	\]
+	Sau đó:
+	\[
+	L[i] = \max(L[i], p), \quad R[p] = \min(R[p], i)
+	\]
+	và cập nhật $i$ vào vị trí cuối cùng có bit thứ $b$ hay $last[b]$.
+
+\begin{lstlisting}
+for i in range(n):
+	for b in range(4):
+		if ms[i] >> b & 1:
+			p = last[b][last[b][0] != -1 
+						and ms[i] == ms[last[b][0]]]
+			if p != -1:
+				L[i] = max(L[i], p)
+				R[p] = min(R[p], i)
+			
+			if last[b][0] == -1 or ms[last[b][0]] == ms[i]:
+				last[b] = (i, last[b][1])
+			else: 
+				last[b] = (i, last[b][0])
+\end{lstlisting}
+	Khi đã có $L[x], R[x]$, mỗi truy vấn:
+	\begin{itemize}[nosep]
+		\item Nếu $s = t$ hoặc $(s, t) \in E$: xử lý như Subtask 1.
+		\item Ngược lại: duyệt $u \in \{L[s], R[s], L[t], R[t]\}$ và lấy $\min |u - s| + |u - t|$ nếu thỏa mãn điều kiện $ms_u \& ms_s \not = 0$ và $ms_u \& ms_t \not = 0$. Nếu không tìm được $u$ thỏa mãn, in -1.
+	\end{itemize}
+		\begin{lstlisting}
+INF = 1000000000
+for i in range(q):
+	u, v = map(int, input().split())
+	u = u - 1
+	v = v - 1
+	ans = -1
+	if ms[u] & ms[v]:
+		ans = abs(u-v)
+	else:
+		ans = INF
+		if L[u] != -1:
+			ans = min(ans, abs(u - L[u]) + abs(L[u] - v))
+		if R[u] != n:
+			ans = min(ans, abs(u - R[u]) + abs(R[u] - v))
+		if L[v] != -1:
+			ans = min(ans, abs(v - L[v]) + abs(L[v] - u))
+		if R[v] != n:
+			ans = min(ans, abs(v - R[v]) + abs(R[v] - u))
+		if ans == INF:
+			ans = -1
+	print(ans)
+	\end{lstlisting}
+	
+	\subsection{Phân Tích Độ Phức Tạp}
+	
+	\subsubsection{Độ phức tạp thời gian.}
+	
+	\textbf{Ở bước tiền xử lý:}
+	
+	\begin{itemize}
+		\item Đầu tiên, ta cần xây dựng mảng $ms_u$ với số phép thao tác là $2 \cdot n$.
+		\item Tiếp theo, để khởi tạo mảng $L[x]$ và $R[x]$, ta duyệt qua $n$ phần tử. 
+		Với mỗi phần tử, ta kiểm tra tại $2$ bit bật (số phép thao tác là $4$), 
+		và tại mỗi bit bật ta kiểm tra tối đa $2$ vị trí trong $last[b]$ để tìm $p$ thỏa mãn 
+		(số thao tác tại mỗi bit bật là $2$).
+	\end{itemize}
+	
+	Do đó, tổng số phép thao tác để khởi tạo mảng $L[x], R[x]$ là 
+	\[
+	(4 + 2 \cdot 2) \times n = 8n.
+	\]
+	Suy ra, tổng độ phức tạp thời gian để tiền xử lý là $\Theta(n)$.
+	
+	\textbf{Ở bước xử lý truy vấn:}
+	
+	\begin{itemize}
+		\item Với mỗi truy vấn, hai trường hợp đầu chỉ mất $1$ thao tác thực hiện.
+		\item Với trường hợp thứ ba, ta chỉ duyệt $4$ phần tử và kiểm tra điều kiện thỏa mãn.
+	\end{itemize}
+	
+	Do đó, số phép thao tác là $4$ cho mỗi truy vấn, hay độ phức tạp thời gian để thực hiện mỗi truy vấn là $\Theta(1)$.
+	
+	Suy ra, độ phức tạp để thực hiện toàn bộ $q$ truy vấn là $\Theta(q)$.
+	
+	
+	\textbf{Độ phức tạp thời gian của bài toán là } 
+	\[
+	\langle \Theta(n), \Theta(q) \rangle 
+	\text{ hay } \Theta(n + q).
+	\]
+	
+	\subsubsection{Độ phức tạp không gian.}
+	
+	\textbf{Ở bước tiền xử lý:}
+	
+	\begin{itemize}
+		\item Ta cần tạo mảng $ms_u$, $L[x]$, $R[x]$ nên mất độ phức tạp không gian là $\Theta(n)$.
+		\item Mảng $last[4]$ với mỗi phần tử lưu $2$ vị trí nên mất độ phức tạp không gian là $\Theta(1)$.
+	\end{itemize}
+	
+	Do đó, độ phức tạp không gian ở bước tiền xử lý là $\Theta(n)$.
+	
+	\textbf{Ở bước xử lý truy vấn:}
+	Ta không tạo thêm gì nên độ phức tạp không gian là $\Theta(1)$.
+	
+	
+	\textbf{Độ phức tạp không gian của bài toán là } 
+	\[
+	\langle \Theta(n), \Theta(1) \rangle 
+	\text{ hay } \Theta(n).
+	\]
+	
+	\section*{Lưu ý}
+	Phần này note một số chỗ mình chưa giải thích trong phần mục đích.
+	
+	\begin{enumerate}
+		\item \textbf{Tại sao lại là $|\mathcal{P}_i \cap \mathcal{P}_{i+1}| = 1, \forall i < k$ mà không phải là $\mathcal{P}_i \cap \mathcal{P}_{i+1} \not = \varnothing, \forall i < k$}
+		\begin{itemize}
+			\item Bởi vì nếu chỉ cần điều kiện kia thì độ dài đường đi tối ưu không nhất thiết bằng $2$. 
+			
+			$\{s, u_2, u_3, t\}$ vẫn thỏa mãn nếu chỉ cần với điều kiện $\mathcal{P}_i \cap \mathcal{P}_{i+1} \not = \varnothing, \forall i < k$.
+			
+			\item Một cách chứng minh khác. Mục đích ở đây là tìm $k$ nhỏ nhất mà vẫn thỏa mãn đường đi tối ưu. 
+			
+			Ta ưu tiên xét $\{s, u_3, t\}$ và bỏ qua $\{s, u_2, u_3, t\}$ nếu $|\mathcal{P}_s \cap \mathcal{P}_{u_2}| = 2$ vì lúc này $s$ có thể đến $u_3$ vẫn đạt tối ưu mà không cần qua $u_2$ (Theo nhận xét $1$).
+		\end{itemize}
+		\item \textbf{Tại sao phải lưu $2$ vị trí cuối cùng có bit $b$ bật thay vì một vị trí}
+		
+		\begin{itemize}
+			\item Tại vị trí $i$ bất kì, ta cần tìm $p = last[b] \text{ sao cho } ms_p \ne ms_i$ nếu bit $b$ bật.
+			
+			Nếu như chỉ lưu $1$ vị trí cuối cùng, thì $p$ có thể rơi vào trường hợp $ms_p = ms_i$.
+			
+			Do đó, ta cần lưu $2$ vị trí để đảm bảo có thể tồn tại một vị trí trong đó $ms_p \ne ms_i$.
+		\end{itemize}
+	\end{enumerate}
+
+\end{document}

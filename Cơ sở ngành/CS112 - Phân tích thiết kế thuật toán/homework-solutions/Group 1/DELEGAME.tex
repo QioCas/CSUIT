@@ -1,0 +1,147 @@
+% Tệp này chứa nội dung LaTeX để dán thẳng vào Overleaf và biên dịch ra PDF
+% Định dạng bám sát ex.tex (tiêu đề, mục lục, định dạng code)
+\documentclass[11pt,a4paper]{article}
+
+% Hỗ trợ tiếng Việt và mã Unicode
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[utf8]{vietnam}
+\usepackage[outputdir=../]{minted}
+
+\definecolor{LightGray}{gray}{0.9}
+
+% Toán và ký hiệu
+\usepackage{amsmath, amssymb}
+
+% Liên kết
+\usepackage[hidelinks]{hyperref}
+
+% Đầu trang/chân trang
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{DELEGAME - Lời Giải}
+\rhead{Nhóm 1}
+\cfoot{\thepage}
+
+% Hiển thị code Python
+\usepackage{xcolor}
+\usepackage{listings}
+
+\title{\textbf{DELEGAME - Lời Giải}}
+\author{Nhóm 1}
+\date{January 2026}
+
+\begin{document}
+\maketitle
+
+    \section{Phát biểu bài toán}
+
+    Cho hai dãy số nguyên: \textbf{$A$} độ dài $n$ và \textbf{$B$} độ dài $m$. Với mỗi giá trị $x$, ký hiệu \(\mathrm{first}(x)\) là \textbf{vị trí xuất hiện sớm nhất} của $x$ trong $A$ (đánh số từ $0$), và coi \(\mathrm{first}(x)=+\infty\) nếu $x$ không xuất hiện trong $A$.
+    
+    Yêu cầu: xác định người thắng trong trò chơi \textbf{DELEGAME} theo quy tắc sau:
+    
+    \begin{itemize}
+        \item Nếu tồn tại phần tử $x$ trong $B$ mà $x$ \textbf{không xuất hiện} trong $A$ (tức \(\mathrm{first}(x)=+\infty\)), \textbf{Bob thắng}. 
+        \item Ngược lại, xét dãy chỉ số \(\big(\mathrm{first}(B_1),\mathrm{first}(B_2),\dots,\mathrm{first}(B_m)\big)\). Nếu dãy này \textbf{không giảm} (tức là \(\mathrm{first}(B_i)\le \mathrm{first}(B_{i+1})\) với mọi $i$), \textbf{Alice thắng}; nếu có chỉ số vi phạm (tồn tại $i$ sao cho \(\mathrm{first}(B_i) > \mathrm{first}(B_{i+1})\)), \textbf{Bob thắng}.
+    \end{itemize}
+
+    \paragraph{Diễn giải直 quan}
+    Trực giác: $B$ ``tôn trọng'' thứ tự xuất hiện sớm nhất trong $A$ thì Alice thắng; chỉ cần một cặp ngược thứ tự (hoặc phần tử không có trong $A$), Bob thắng.
+
+\section{Phân tích và đánh giá phương pháp}
+
+    \subsection{Ý tưởng thuật toán}
+
+    Thuật toán sử dụng hai bước rất tuyến tính:
+    \begin{enumerate}
+        \item Duyệt $A$ từ trái sang phải, lưu \textbf{vị trí xuất hiện đầu tiên} cho mỗi giá trị $x$ vào bảng băm \texttt{first}.
+        \item Duyệt $B$ từ \textbf{phải sang trái} và duy trì một ngưỡng \texttt{limit} (ban đầu là $n$). Với mỗi phần tử $x$:
+        \begin{itemize}
+            \item Nếu $x$ không có trong \texttt{first}: đặt \texttt{limit} lại $=n$ (coi như chuỗi điều kiện bị \textit{reset}).
+            \item Nếu có \(p=\mathrm{first}(x)\):
+            \begin{itemize}
+                \item Nếu \(p \le \texttt{limit}\): cập nhật \texttt{limit} $\leftarrow p$.
+                \item Nếu \(p > \texttt{limit}\): đặt \texttt{limit} $= n$ (vi phạm tính không giảm khi nhìn theo chiều trái sang phải).
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+
+    Sau khi quét xong, nếu \texttt{limit} $< n$ nghĩa là phần tử đầu tiên của $B$ ``gắn được'' vào một chuỗi không giảm hợp lệ của các chỉ số xuất hiện đầu tiên; kết luận \textbf{Alice thắng}. Ngược lại, \textbf{Bob thắng}.
+
+    \subsection{Tính đúng đắn (phác thảo)}
+
+    \paragraph{Bất biến} Khi duyệt $B$ từ phải sang trái, biến \texttt{limit} luôn giữ giá trị \textbf{chỉ số nhỏ nhất có thể} của phần tử kế tiếp về bên trái để chuỗi chỉ số \(\mathrm{first}(\cdot)\) còn \textbf{không tăng} khi nhìn từ trái sang phải.
+    
+    \noindent Nếu tại phần tử $x=B_i$ có \(p=\mathrm{first}(x)\le \texttt{limit}\), ta có thể đặt chỉ số của $B_i$ về $p$ mà vẫn duy trì được tính không giảm cho đoạn $B_i, B_{i+1},\dots,B_m$. Ngược lại, khi \(p>\texttt{limit}\) hoặc $x$ không tồn tại trong $A$, mọi cố gắng ``nối'' $B_i$ vào một đoạn hợp lệ ở bên phải đều thất bại, nên cần \textit{reset}.
+    
+    \noindent Ở cuối vòng lặp, điều kiện \texttt{limit} $< n$ tương đương với việc tồn tại một đoạn hậu tố hợp lệ của $B$ mà \textbf{bao trùm} luôn phần tử đầu tiên, tức toàn bộ $B$ tôn trọng thứ tự xuất hiện đầu tiên trong $A$. Do đó, tiêu chí in \texttt{"Alice"}/\texttt{"Bob"} là chính xác.
+
+    \subsection{Đánh giá}
+
+    \begin{itemize}
+        \item \textbf{Đơn giản, tuyến tính}: mỗi phần tử của $A$ và $B$ được xử lý đúng \textbf{một lần}.
+        \item \textbf{Bộ nhớ nhỏ}: chỉ lưu một bảng băm các lần xuất hiện đầu tiên.
+        \item \textbf{Ổn định với trùng lặp}: việc cố định tại \textit{lần xuất hiện đầu tiên} loại bỏ sự mơ hồ do phần tử lặp lại trong $A$.
+    \end{itemize}
+
+\section{Phân tích độ phức tạp}
+
+    \textbf{Thời gian}: $O(n + m)$ — một lần quét $A$ và một lần quét $B$.\\
+    \textbf{Không gian}: $O(u)$ với $u \le n$ là số lượng giá trị phân biệt trong $A$ (kích thước bảng \texttt{first}).
+
+\section{Giải thích code (Python)}
+
+    \begin{itemize}
+        \item Đọc $n, m$; xây \texttt{first[x]} $=$ chỉ số xuất hiện đầu tiên của $x$ trong $A$.
+        \item Đọc dãy $B$.
+        \item Khởi tạo \texttt{limit}$=n$; duyệt $B$ từ phải sang trái:
+        \begin{itemize}
+            \item Nếu $x$ không có trong \texttt{first} hoặc \(\texttt{first}[x] > \texttt{limit}\): \texttt{limit}$\leftarrow n$.
+            \item Ngược lại: \texttt{limit}$\leftarrow \texttt{first}[x]$.
+        \end{itemize}
+        \item In \texttt{"Alice"} nếu \texttt{limit}$<n$, ngược lại in \texttt{"Bob"}.
+    \end{itemize}
+
+\section{Cài đặt (Python)}
+\begin{minted}[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]{python}
+import sys
+
+def solve():
+    it = iter(sys.stdin.buffer.read().split())
+    try:
+        n = int(next(it)); m = int(next(it))
+    except StopIteration:
+        return
+
+    first = {}
+    for i in range(n):
+        x = int(next(it))
+        first.setdefault(x, i)
+
+    b = [int(next(it)) for _ in range(m)]
+
+    limit = n
+    for x in reversed(b):
+        p = first.get(x)
+        if p is None or p > limit:
+            limit = n
+        else:
+            limit = p
+
+    sys.stdout.write("Alice\n" if limit < n else "Bob\n")
+
+if __name__ == "__main__":
+    solve()
+\end{minted}
+
+\end{document}
