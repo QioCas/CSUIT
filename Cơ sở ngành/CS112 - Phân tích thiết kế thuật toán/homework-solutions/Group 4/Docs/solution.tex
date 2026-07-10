@@ -1,0 +1,233 @@
+\title{Template báo cáo UIT}
+
+\documentclass[12pt]{article}
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese,english]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.17}
+\usepackage{listings}
+\usepackage{xcolor} 
+\definecolor{bgcolor}{HTML}{fdf6e3}
+\definecolor{textcolor}{HTML}{586e75}
+\definecolor{keywordcolor}{HTML}{d33682}
+\definecolor{typecolor}{HTML}{268bd2}
+\definecolor{stringcolor}{HTML}{cb4b16}
+\definecolor{commentcolor}{HTML}{859900}
+\usepackage{minted}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+\lstset{
+	language=C++,
+	backgroundcolor=\color{bgcolor},
+	basicstyle=\ttfamily\footnotesize\color{textcolor},
+	keywordstyle=\color{keywordcolor},
+	identifierstyle=\color{textcolor},
+	stringstyle=\color{stringcolor},
+	commentstyle=\color{commentcolor}\itshape,
+	numberstyle=\tiny\color{gray},
+	numbers=left,
+	tabsize=2,
+	frame=single,
+	breaklines=true,
+	showstringspaces=false,
+	captionpos=b,
+	morekeywords={ll,bool,const,struct,template,typename,decltype,auto},
+	emph={operator,begin,end,top,front,end,pop,push,first,second}, emphstyle=\color{typecolor}
+}
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codeborder}{RGB}{200,200,200}
+
+\lstset{
+	basicstyle=\ttfamily\small,
+	backgroundcolor=\color{codebg},
+	frame=single,
+	rulecolor=\color{codeborder},
+	breaklines=true,
+	captionpos=b,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue}\bfseries,
+	commentstyle=\color{gray}\itshape,
+	stringstyle=\color{red},
+	showstringspaces=false
+}
+\begin{document}
+	\begin{titlepage}		
+		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+		\center 
+		% ---------------------------------------------------------------
+		\textsc{\LARGE \bf Đại học quốc gia TP.HCM}
+		\newline
+		\textsc{\LARGE \bf Trường đại học công nghệ thông tin}\\[1.5cm] 
+		\graphicspath{ {./logo/} }
+		% ---------------------------------------------------------------
+		\includegraphics[scale=0.5]{uit.png}\\[1.5cm]
+		% ---------------------------------------------------------------
+		\textsc{\Large \bf Ngành: Khoa học máy tính}\\[0.5cm] 
+		% ---------------------------------------------------------------
+		\textsc{\large \bf Môn học: CS112.Q11.KHTN}\\[1.0cm] 
+		% ---------------------------------------------------------------
+		\HRule \\[0.4cm]
+		{ \huge \bfseries Lời giải bài tập nhóm $4$}\\[0.4cm] 
+		\HRule \\[1.5cm]
+		% ---------------------------------------------------------------
+		\begin{minipage}{0.9\textwidth}
+			\begin{flushright} \large
+				\centering
+				\emph{\textbf{Giảng viên:}} \\
+				Nguyễn Thanh Sơn
+			\end{flushright}
+		\end{minipage}\\[1cm]
+		% ---------------------------------------------------------------
+		\begin{minipage}{0.9\textwidth}
+			\begin{flushleft} \large
+				\centering
+				\emph{\textbf{Sinh viên thực hiện:}}\\
+				24520031 - Hà Xuân Thiện \\
+				24521901 - Trần Quang Trường
+			\end{flushleft}
+		\end{minipage}
+		\vfill 
+	\end{titlepage}
+	
+	\tableofcontents
+	\newpage
+	
+	
+	% ---------------------------------------------------------------
+	% Start document
+	% ---------------------------------------------------------------
+\section{Tóm tắt đề bài}
+
+Bản đồ là một mặt phẳng hình chữ nhật kích thước $W \times H$ ($W, H \leq 10^9$). Có $n \leq 10^5$ vùng theo dõi Aura (hình chữ nhật trục thẳng) không giao nhau và không chạm biên bản đồ. Có $m \leq 10^5$ Hunter tại vị trí $(C_j, R_j)$ mang lượng Aura $t_j$.  
+
+Yêu cầu: Với mỗi Hunter, xác định vùng chứa nó (vì các vùng không giao nhau nên luôn duy nhất một vùng hoặc không vùng nào). In ra tổng Aura của từng vùng (theo thứ tự input) và cuối cùng là tổng Aura nằm ngoài mọi vùng.
+
+\section{Subtask 1 ($n, m \leq 10^3$)}
+
+\subsection{Phương pháp thiết kế thuật toán sử dụng}
+
+Brute Force.
+
+\subsection{Tại sao sử dụng}
+
+Bài toán có đặc điểm quy mô nhỏ ($n, m \leq 10^3$), dẫn đến không gian tìm kiếm hữu hạn và có thể liệt kê hết các khả năng mà không vượt giới hạn thời gian. Đặc điểm này khớp với tính chất của Brute Force, vốn dành cho các vấn đề mà số lượng kết hợp có thể kiểm tra trực tiếp mà không cần tối ưu hóa phức tạp.
+
+\subsection{Sử dụng như thế nào trong bài toán}
+
+Với mỗi Hunter $j$ (tổng $m$ Hunter), duyệt qua tất cả $n$ vùng để kiểm tra xem điểm $(C_j, R_j)$ có nằm nghiêm ngặt bên trong vùng $i$ (kiểm tra $X_i \le C_j \le A_i$ và $Y_i \le R_j \le B_i$). Nếu có, cộng $t_j$ vào tổng của vùng $i$; nếu không thuộc vùng nào, cộng vào phần outside.
+
+\subsection{Phân tích độ phức tạp}
+
+\subsubsection{Độ phức tạp thời gian}
+
+\begin{itemize}
+	\item Ở bước tiền xử lý: Không cần tiền xử lý do đó độ phức tạp thời gian là $\Theta(1)$.
+	\item Ở bước xử lý: Với mỗi Hunter cần duyệt $n$ vùng, mỗi kiểm tra containment nên mất $O(n)$. Do đó, tổng $m$ Hunter mất $O(n m)$ để kiểm tra.
+\end{itemize}
+
+$\Rightarrow$ Do đó, độ phức tạp thời gian của bài toán là $<\Theta(1), \Theta(n m)>$.
+
+\subsubsection{Độ phức tạp không gian}
+Vì không có bước tạo dữ liệu nào nên độ phức tạp không gian của bài toán là $\Theta(1)$.
+
+\section{Subtask 2 ($W, H \leq 10^3$)}
+
+\subsection{Phương pháp thiết kế thuật toán sử dụng}
+Transform and Conquer (Biến đổi để trị).
+\subsection{Tại sao sử dụng}
+
+Bài toán có đặc điểm bản đồ nhỏ ($W, H \leq 10^3$), cho phép tạo mảng 2D để precompute mà vẫn không vượt bộ nhớ. Việc biến đổi cách biểu diễn dữ liệu là đặc điểm của Transform and Conquer. Điều này giúp giảm thời gian truy vấn từ $\Theta(m)$ xuống $\Theta(1)$.
+
+\subsection{Sử dụng như thế nào trong bài toán}
+
+Tạo mảng 2D kích thước $W \times H$ để lưu lượng Aura tại từng ô, cộng $t_j$ vào ô $(C_j, R_j)$. Sau đó tính prefix sum 2D để truy xuất tổng Aura trong bất kỳ hình chữ nhật con nào trong $O(1)$.
+
+\subsection{Phân tích độ phức tạp}
+
+\subsubsection{Độ phức tạp thời gian}
+
+\begin{itemize}
+	\item Ở bước tiền xử lý: Bước xây dựng prefix sum 2D tốn độ phức tạp thời gian là $\Theta(m + WH)$.
+	\item Ở bước xử lý: Vì đã có mảng tổng tiền tố nên thời gian để truy vấn với mỗi vùng là $\Theta(1)$. Do đó độ phức tạp thời gian là $\Theta(n)$.
+\end{itemize}
+
+$\Rightarrow$ Do đó, độ phức tạp thời gian của bài toán là $<\Theta(m + W H), \Theta(n)>$.
+
+\subsubsection{Độ phức tạp không gian}
+
+\begin{itemize}
+	\item Ở bước tiền xử lý, ta cần xây dựng mảng prefix sum 2D nên tốn độ phức tạp không gian là $\Theta(W H)$.
+	\item Ở bước xử lý, ta không tạo thêm gì hết nên độ phức tạp không gian là $\Theta(1)$.
+\end{itemize}
+
+$\Rightarrow$ Do đó, độ phức tạp không gian của bài toán là $\Theta(W H)$.
+
+\section{Subtask 3 (Không ràng buộc bổ sung)}
+
+\subsection{Phương pháp thiết kế thuật toán sử dụng}
+
+Transform-and-Conquer (Biến đổi để trị).
+
+\subsection{Tại sao sử dụng}
+
+Bài toán có đặc điểm ràng buộc lớn ($W, H \leq 10^9$, $n, m \leq 10^5$) khiến không thể dùng lưới được. Vì các vùng không giao nhau nên ta có ý tưởng tại mỗi Hunter tìm kiếm có tồn tại vùng nào chứa Hunter đó không. Thay vì biểu diễn trên bảng lưới 2D ta biểu diễn bài toán về 1D. Coi một chiều là trục thời gian, chiều còn lại ta biểu diễn thành các sự kiện (Sweep line). Vì bài toán có đặc điểm biến đổi cách biểu diễn dữ liệu nên ta sử dụng phương pháp thiết kế Transform and Conquer.
+
+\subsection{Sử dụng như thế nào trong bài toán}
+
+Ta coi mỗi vùng theo dõi là một khoảng trên từ $X_i$ đến $A_i$ trục $x$. Tại mỗi vị trí $x$, duy trì tập các khoảng dọc $y$ đang active). Với mỗi Hunter tại $x = C_j$, kiểm tra xem $R_j$ có nằm trong khoảng dọc nào của tập active không.
+
+Cụ thể:
+Tại mỗi vị trí $x$, có thể có một trong $3$ loại sự kiện sau:
+\begin{itemize}
+	\item Sự kiện mở, với mỗi vùng $i$, tại $x = X_i$, ta thêm đoạn $(Y_i, B_i)$ vào tập active.
+	\item Sự kiện truy vấn, với mỗi Hunter $j$, tại $j = C_j$, ta kiểm tra xem $R_j$ có thuộc khoảng nào trong tập active không.
+	\item Sự kiện đóng, với mỗi vùng $i$, tại $X = A_i$, ta loại bỏ đoạn $(Y_i, B_i)$ khỏi tập active.
+\end{itemize}
+
+Để biểu diễn tập sự kiện, ta sắp xếp tập sự kiện ưu tiên theo $x$ trước rồi ưu tiên theo sự kiện mở, tới sự kiện truy vấn, rồi tới sự kiện đóng. 
+
+
+Để biển diễn tập active, ta có thể sài set để thực hiện thao tác thêm/xóa/tìm kiếm trong $\log{n}$. Cụ thể, ta lưu tập set gồm các khoảng $(l, r)$ và chứa vị trí $i$của vùng (Nói cách khác một tuple (l, r, i) ). Khi truy vấn một hunter có vị trí trên trục dọc là $y$ thì chỉ cần tìm khoảng có $l$ lớn nhất mà $l \le y$, nếu $l \le y \le r$ thì tức đoạn $i$ chứa hunter đó. 
+
+
+
+\subsection{Phân tích độ phức tạp}
+
+\subsubsection{Độ phức tạp thời gian}
+
+\begin{itemize}
+	\item Ở bước xây dựng tập sự kiện, ta mất độ phức tạp thời gian là $\Theta((n + m) \log{(n + m)})$.
+	\item Ở bước duyệt tập sự kiện, với mỗi sự kiện mở/đóng/truy vấn đều mất $\log{n}$. Do đó, để duyệt tập sự kiện mất độ phức tạp thời gian là $\Theta((n + m) \log{n})$.
+\end{itemize}
+
+Do đó, độ phức tạp thời gian của bài toán là $$<\Theta((n + m) \log{(n + m)}), \Theta((n + m) \log{n})>$$
+
+\subsubsection{Độ phức tạp không gian}
+
+\begin{itemize}
+	\item Để xây dựng tập sự kiện, ta mất độ phức tạp không gian là $\Theta(n + m)$.
+	\item Tại bước duyệt tập sự kiện, ta cần duy trì một cái set, và một mảng lưu số hunter có trong một vùng do đó độ phức tạp không gian là $\Theta(n)$.
+\end{itemize}
+
+Do đó, độ phức tạp không gian của bài toán là $\Theta(n + m)$.
+
+\end{document}
+
+
+% 	\begin{minted}[linenos, fontsize=\footnotesize]{cpp}
+%
+%   \end{minted} 
