@@ -1,0 +1,4 @@
+\babel@toc {vietnamese}{}\relax 
+\beamer@sectionintoc {1}{Learning in Multinomial Logistic Regression}{3}{0}{1}
+\beamer@sectionintoc {2}{Evaluation: Precision, Recall, F-measure}{7}{0}{2}
+\beamer@sectionintoc {3}{Test set and cross-validation}{26}{0}{3}

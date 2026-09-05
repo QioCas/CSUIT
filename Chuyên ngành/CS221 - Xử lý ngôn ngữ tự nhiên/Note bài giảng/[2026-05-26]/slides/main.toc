@@ -1,0 +1,8 @@
+\babel@toc {vietnamese}{}\relax 
+\beamer@sectionintoc {1}{Bối cảnh bài toán}{3}{0}{1}
+\beamer@sectionintoc {2}{MiniRAG}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Heterogeneous Graph Indexing}{7}{0}{2}
+\beamer@subsectionintoc {2}{2}{Lightweight Graph-Based Knowledge Retrieval}{10}{0}{2}
+\beamer@sectionintoc {3}{Kết quả thực nghiệm}{13}{0}{3}
+\beamer@sectionintoc {4}{Phân tích ưu nhược điểm}{19}{0}{4}
+\beamer@sectionintoc {5}{Phân tích}{20}{0}{5}

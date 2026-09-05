@@ -1,0 +1,70 @@
+
+1. Trong F-beta, khi beta > 1 thì metric sẽ ưu tiên yếu tố nào hơn?
+A. Accuracy
+B. Precision
+C. Recall
+D. F1-score
+-> C
+
+2. Gold labels là gì?
+A. Nhãn do hệ thống tự dự đoán
+B. Nhãn do con người xác định là đúng
+C. Nhãn được sinh ngẫu nhiên
+D. Nhãn dùng để kiểm tra tốc độ mô hình
+-> B
+
+3. Macroaveraging khác Microaveraging ở điểm nào?
+A. Macroaveraging gộp toàn bộ confusion matrix trước rồi mới tính metric
+B. Macroaveraging chỉ dùng được cho bài toán binary classification
+C. Macroaveraging tính metric riêng cho từng lớp rồi lấy trung bình qua các lớp
+D. Macroaveraging luôn cho kết quả giống Microaveraging
+-> C
+
+4. Devset trong quy trình train/dev/test chủ yếu dùng để làm gì?
+A. Thay thế hoàn toàn training set
+B. Tune tham số và chọn mô hình tốt nhất
+C. Báo cáo kết quả cuối cùng của mô hình
+D. Thay thế test set trong mọi trường hợp
+-> B
+
+5. Nếu một mô hình luôn dự đoán negative trong bộ dữ liệu có rất nhiều negative và rất ít positive, chỉ số nào dễ gây hiểu nhầm nhất?
+A. Precision
+B. Recall
+C. Accuracy
+D. F1-score
+-> C
+
+6. Vì sao F-measure dùng harmonic mean thay vì arithmetic mean?
+A. Vì harmonic mean luôn lớn hơn arithmetic mean
+B. Vì harmonic mean nhạy hơn với giá trị nhỏ hơn giữa precision và recall
+C. Vì harmonic mean dễ tính hơn arithmetic mean
+D. Vì harmonic mean chỉ dùng để tính accuracy
+-> B
+
+7. Trong quy trình train/dev/test, tập test nên được dùng khi nào?
+A. Dùng nhiều lần trong lúc tune tham số
+B. Dùng để chọn feature bằng cách xem thử kết quả liên tục
+C. Dùng sau khi đã chọn mô hình tốt nhất để báo cáo hiệu năng cuối cùng
+D. Dùng thay cho training set khi dữ liệu ít
+-> C
+
+8. Công thức của F1-score là gì?
+A. F1 = P + R
+B. F1 = 2PR / (P + R)
+C. F1 = TP / (TP + TN)
+D. F1 = (P + R) / 2
+-> B
+
+9. Trong k-fold cross-validation, nếu k = 10 thì mỗi lần chạy mô hình sẽ dùng bao nhiêu fold để huấn luyện?
+A. 1 fold
+B. 5 folds
+C. 9 folds
+D. 10 folds
+-> C
+
+10. Với binary classification, giả sử TP = 40, FP = 10, FN = 20, TN = 30. Recall bằng bao nhiêu?
+A. 0.8
+B. 0.667
+C. 0.75
+D. 0.7
+-> B
