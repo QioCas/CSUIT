@@ -1,0 +1,48 @@
+-- =============================================================
+--  BUỔI 6: BACKUP, RESTORE & IMPORT DATA (DevOps Skills)
+-- =============================================================
+
+-- Q6.1 BEGIN (Thực hiện trên Terminal/Command Line)
+-- Backup dữ liệu (Logical Backup):
+-- Trước khi thực hiện các thao tác nhập dữ liệu lớn, việc backup là bắt buộc.
+--
+-- Yêu cầu:
+-- 1. Mở Terminal (hoặc CMD).
+-- 2. Dùng lệnh `mysqldump` để backup TOÀN BỘ cơ sở dữ liệu `student_management`
+--    ra file tên là `backup_full_yyyymmdd.sql`.
+-- 3. Dùng lệnh `mysqldump` để backup CHỈ CẤU TRÚC (không dữ liệu)
+--    ra file tên là `backup_structure_only.sql`.
+--
+-- (Ghi lại câu lệnh bạn đã dùng vào bên dưới dưới dạng comment)
+-- Q6.1 END
+
+
+-- Q6.2 BEGIN (Import CSV & Data Transformation)
+-- Tình huống: Phòng Đào tạo gửi danh sách tân sinh viên K26 qua file `new_students_2026.csv`.
+-- Tuy nhiên, dữ liệu trong CSV không khớp hoàn toàn với bảng `students`:
+--   - Giới tính trong CSV là 'Nam'/'Nu', trong DB là 'Male'/'Female'.
+--   - Email trong CSV là email cá nhân, cần đổi thành email trường (@uit.edu.vn).
+--
+-- Yêu cầu (Kỹ thuật Staging Table):
+-- 1. Tạo một bảng tạm tên là `students_staging` có cấu trúc giống file CSV (các cột đều là VARCHAR để tránh lỗi khi load).
+-- 2. Dùng lệnh `LOAD DATA LOCAL INFILE` để nạp dữ liệu từ file CSV vào bảng `students_staging`.
+-- 3. Viết câu lệnh `INSERT INTO ... SELECT ...` để chuyển dữ liệu từ `students_staging` sang bảng chính `students`.
+--    Trong quá trình chuyển, phải TRANSFORM dữ liệu:
+--      - 'Nam' -> 'Male', 'Nu' -> 'Female'.
+--      - Email: lấy `student_code` ghép với '@uit.edu.vn' (bỏ email cá nhân).
+--      - Ngày nhập học (`enrollment_date`): lấy ngày hiện tại (`CURDATE()`).
+-- 4. Sau khi xong, xóa bảng `students_staging`.
+--
+-- VIẾT CÁC CÂU LỆNH SQL CỦA BẠN TẠI ĐÂY
+-- Q6.2 END
+
+
+-- Q6.3 BEGIN (Disaster Recovery)
+-- Giả lập sự cố và Khôi phục:
+--
+-- Yêu cầu (Cẩn thận!):
+-- 1. Viết lệnh XÓA (DROP) toàn bộ CSDL `student_management`. (Đừng chạy nếu bạn chưa làm Q6.1!).
+-- 2. Viết câu lệnh (trên Terminal) để khôi phục lại CSDL từ file `backup_full_yyyymmdd.sql` đã tạo ở Q6.1.
+--
+-- (Ghi lại câu lệnh Restore bạn dùng vào bên dưới dạng comment)
+-- Q6.3 END
