@@ -1,0 +1,1 @@
+Trong thư mục IT003.P21.CTTN (aka mã lớp học của lớp mình), gồm code của các bài tập được code bởi goat Bảo Quý Định Tân.  
