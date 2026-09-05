@@ -1,0 +1,8 @@
+1. 1465 gói.
+2. 59 gói.
+3. 661 gói.
+4. 424 gói.
+5. 20 dns và 103 https tổng 123. trong đó https có 103 web.
+6. 00:08:02:1c:47:ae
+7. Ten file la 151
+8. SHA1 Hash: 0cdd92ee84a94e1f4b7a41c2e53835634a4bdcd7
