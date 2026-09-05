@@ -22,7 +22,7 @@ Danh sách được liệt kê theo từng học kỳ.
 | ------ | ---------------------------------- | ------- |
 | CS005  | Giới thiệu ngành Khoa học Máy tính | - |
 | IT001  | Nhập môn lập trình                 | Đã cập nhật |
-| MA003  | Đại số tuyến tính                  | - |
+| MA003  | Đại số tuyến tính                  | Đã cập nhật |
 | MA006  | Giải tích                          | - |
 | SS004  | Kỹ năng nghề nghiệp                | - |
 | SS006  | Pháp luật đại cương                | - |
@@ -54,8 +54,8 @@ Danh sách được liệt kê theo từng học kỳ.
 
 | Mã môn | Tên môn học                   | Ghi chú |
 | ------ | ----------------------------- | ------- |
-| CS116  | Lập trình Python cho máy học  | - |
-| CS117  | Tư duy tính toán              | - |
-| CS221  | Xử lý ngôn ngữ tự nhiên       | - |
-| CS231  | Nhập môn thị giác máy tính    | Đã cập nhật   |
+| CS116  | Lập trình Python cho máy học  | Đã cập nhật |
+| CS117  | Tư duy tính toán              | Đã cập nhật |
+| CS221  | Xử lý ngôn ngữ tự nhiên       | Đã cập nhật |
+| CS231  | Nhập môn thị giác máy tính    | Đã cập nhật |
 | SS008  | Kinh tế chính trị Mác - Lênin | - |
