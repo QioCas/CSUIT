@@ -31,12 +31,12 @@ Danh sách được liệt kê theo từng học kỳ.
 
 | Mã môn | Tên môn học                    | Ghi chú |
 | ------ | ------------------------------ | ------- |
-| IT003  | Cấu trúc dữ liệu và giải thuật | - |
-| IT005  | Nhập môn mạng máy tính         | - |
-| IT012  | Tổ chức và cấu trúc máy tính 2 | - |
+| IT003  | Cấu trúc dữ liệu và giải thuật | Đã cập nhật |
+| IT005  | Nhập môn mạng máy tính         | Đã cập nhật |
+| IT012  | Tổ chức và cấu trúc máy tính II | Đã cập nhật |
 | MA004  | Cấu trúc rời rạc               | - |
 | MA005  | Xác suất thống kê              | Đã cập nhật   |
-| SS007  | Triết học Mác - Lênin          | - |
+| SS007  | Triết học Mác - Lênin          | Đã cập nhật |
 | SS009  | Chủ nghĩa xã hội khoa học      | - |
 
 ### Học kỳ 1 / 2025-2026
@@ -45,10 +45,10 @@ Danh sách được liệt kê theo từng học kỳ.
 | ------ | -------------------------------- | ------- |
 | CS112  | Phân tích và thiết kế thuật toán | Đã cập nhật   |
 | CS115  | Toán cho khoa học máy tính       | Đã cập nhật   |
-| IT002  | Lập trình hướng đối tượng        | - |
-| IT004  | Cơ sở dữ liệu                    | - |
-| IT007  | Hệ điều hành                     | - |
-| SS010  | Lịch sử Đảng Cộng sản Việt Nam   | - |
+| IT002  | Lập trình hướng đối tượng        | Đã cập nhật |
+| IT004  | Cơ sở dữ liệu                    | Đã cập nhật |
+| IT007  | Hệ điều hành                     | Đã cập nhật |
+| SS010  | Lịch sử Đảng Cộng sản Việt Nam   | Đã cập nhật |
 
 ### Học kỳ 2 / 2025-2026
 
@@ -58,4 +58,4 @@ Danh sách được liệt kê theo từng học kỳ.
 | CS117  | Tư duy tính toán              | Đã cập nhật |
 | CS221  | Xử lý ngôn ngữ tự nhiên       | Đã cập nhật |
 | CS231  | Nhập môn thị giác máy tính    | Đã cập nhật |
-| SS008  | Kinh tế chính trị Mác - Lênin | - |
+| SS008  | Kinh tế chính trị Mác - Lênin | Đã cập nhật |
