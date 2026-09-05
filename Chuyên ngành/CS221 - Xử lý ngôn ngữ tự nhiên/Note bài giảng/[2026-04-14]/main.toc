@@ -1,0 +1,7 @@
+\babel@toc {vietnamese}{}\relax 
+\beamer@sectionintoc {1}{8.5. The Language Modeling Head}{3}{0}{1}
+\beamer@sectionintoc {2}{8.6. More on Sampling}{9}{0}{2}
+\beamer@sectionintoc {3}{8.7. Training}{17}{0}{3}
+\beamer@sectionintoc {4}{8.8. Dealing with Scale}{21}{0}{4}
+\beamer@sectionintoc {5}{8.9. Interpreting the Transformer}{37}{0}{5}
+\beamer@sectionintoc {6}{8.10. Summary}{44}{0}{6}

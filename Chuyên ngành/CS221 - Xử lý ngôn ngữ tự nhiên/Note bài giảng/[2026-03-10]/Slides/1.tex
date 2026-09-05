@@ -1,0 +1,51 @@
+\section{Learning in Multinomial Logistic Regression}
+\begin{frame}{Mục lục}
+	\tableofcontents[currentsection]
+\end{frame}
+
+%% SLIDE 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Learning in Multinomial Logistic Regression}
+	Nhắc lại công thức hàm $L_{\mathrm{CE}}(\hat{y}, y)$ cho binary logistic regression:
+	\begin{equation}
+		L_{\mathrm{CE}}(\hat{y}, y)
+		= -\log p(y \mid x)
+		= -\left[y \log \hat{y} + (1-y)\log(1-\hat{y})\right]
+		\tag{4.37}
+	\end{equation}
+\end{frame}
+
+
+%% SLIDE 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Learning in Multinomial Logistic Regression}
+Công thức tính hàm $L_{\mathrm{CE}}(\hat{\mathbf{y}}, \mathbf{y})$ cho Multinomial Logistic Regression:
+\begin{align}
+	L_{\mathrm{CE}}(\hat{\mathbf{y}}, \mathbf{y})
+	&= -\sum_{k=1}^{K} y_k \log \hat{y}_k
+	\tag{4.38} \\[4pt]
+	&= -\log \hat{y}_c,
+	\quad \text{(Với c là correct class)}
+	\tag{4.39} \\[4pt]
+	&= -\log \hat{p}(y_c = 1 \mid \mathbf{x})
+	\quad  \notag \\[4pt]
+	&= -\log
+	\frac{\exp\!\left(\mathbf{w}_c \cdot \mathbf{x} + b_c\right)}
+	{\sum_{j=1}^{K} \exp\!\left(\mathbf{w}_j \cdot \mathbf{x} + b_j\right)}
+	\quad 
+	\tag{4.40}
+\end{align}
+\end{frame}
+
+\begin{frame}{Learning in Multinomial Logistic Regression}
+Công thức tính đạo hàm riêng theo $\partial w_{k,i}$:
+\begin{align}
+	\frac{\partial L_{\mathrm{CE}}}{\partial w_{k,i}}
+	&= -(y_k - \hat{y}_k)x_i \notag \\[4pt]
+	&= -\left(y_k - p(y_k = 1 \mid x)\right)x_i \notag \\[4pt]
+	&= -\Biggl(
+	y_k -
+	\frac{\exp(\mathbf{w}_k \cdot \mathbf{x} + b_k)}
+	{\sum_{j=1}^{K} \exp(\mathbf{w}_j \cdot \mathbf{x} + b_j)}
+	\Biggr)x_i
+	\tag{4.41}
+\end{align}
+\end{frame}

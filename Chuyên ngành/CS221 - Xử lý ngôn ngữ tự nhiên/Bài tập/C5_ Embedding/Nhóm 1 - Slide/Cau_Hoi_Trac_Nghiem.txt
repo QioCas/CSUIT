@@ -1,0 +1,83 @@
+Câu 1: Trong các mô hình NLP cổ điển (Classical Representation), ý nghĩa của một từ thường được máy tính ghi nhận dưới hình thức nào?
+A. Một vector trong không gian đa chiều.
+B. Một chuỗi ký tự hoặc một chỉ mục (index) trong tập dữ liệu (corpus).
+C. Một ma trận cảm xúc 3 chiều (Valence, Arousal, Dominance).
+D. Một tập hợp các từ đồng nghĩa (synonyms).
+Đáp án đúng: B
+
+Câu 2: Cặp từ "Coffee" (cà phê) và "Cup" (cốc) là ví dụ điển hình minh họa cho khái niệm ngữ nghĩa nào dưới đây?
+A. Word Similarity (Tính tương đồng).
+B. Word Relatedness (Tính liên quan).
+C. Polysemy (Sự đa nghĩa).
+D. Synonymy (Từ đồng nghĩa).
+Đáp án đúng: B
+
+Câu 3: Mô hình Osgood (1957) dùng để định lượng hóa Connotation (Sắc thái ý nghĩa / Cảm xúc) đánh giá một từ qua 3 chiều không gian nào?
+A. Tích cực (Positive), Tiêu cực (Negative), Trung lập (Neutral).
+B. Hình thức (Form), Chức năng (Function), Bản chất (Nature).
+C. Độ dễ chịu (Valence), Cường độ cảm xúc (Arousal), Mức độ kiểm soát (Dominance).
+D. Sự tương đồng (Similarity), Sự liên quan (Relatedness), Sự đồng nghĩa (Synonymy).
+Đáp án đúng: C
+
+Câu 4: According to the text, which of the following word pairs is explicitly cited as an example of synonymy?
+A. surgeon / scalpel
+B. coffee / cup
+C. filbert / hazelnut
+D. hole / agreement
+Đáp án đúng: C
+
+Câu 5: Giả thuyết phân phối (Distributional Hypothesis) - nền tảng của Vector Semantics - có nội dung chính là gì?
+A. Các từ có ý nghĩa giống nhau thường xuất hiện trong các ngữ cảnh tương tự nhau.
+B. Các từ đứng gần nhau trong câu luôn là từ đồng nghĩa.
+C. Mỗi từ chỉ có một vector duy nhất trong mọi ngôn ngữ.
+D. Ý nghĩa của một từ được xác định duy nhất bởi định nghĩa của nó trong từ điển.
+Đáp án đúng: A
+
+Câu 6: Trong câu 'I like deep learning', với cửa sổ ngữ cảnh bằng 1, từ nào là ngữ cảnh (context word) của từ mục tiêu 'learning'?
+A. NLP
+B. like
+C. deep
+D. I
+Đáp án đúng: C
+
+Câu 7: Trong Vector Semantics, 'Window size' (kích thước cửa sổ) được định nghĩa là gì?
+A. Số lượng từ xung quanh từ mục tiêu được xem xét để tính toán sự đồng xuất hiện.
+B. Tổng số từ có trong toàn bộ tập văn bản (corpus).
+C. Số chiều của vector sau khi đã thực hiện giảm chiều ma trận.
+D. Khoảng cách trung bình giữa các câu trong một đoạn văn.
+Đáp án đúng: A
+
+Câu 8: Khi tăng kích thước cửa sổ (Window size) lên rất lớn (ví dụ L >= 50000), ma trận đồng xuất hiện sẽ thay đổi thế nào?
+A. Ma trận trở nên thưa thớt (nhiều số 0) hơn.
+B. Ma trận trở nên đặc (dense) hơn.
+C. Mọi giá trị trong ma trận sẽ trở thành 1.
+D. Kích thước của ma trận (số hàng và cột) sẽ tăng lên.
+Đáp án đúng: A
+
+Câu 9: Sự khác biệt chính giữa bộ phân loại truyền thống (nhắc đến ở Chapter 4) và bộ phân loại dựa trên embedding là gì?
+A. Bộ phân loại truyền thống chỉ hoạt động được trên máy tính thế hệ cũ.
+B. Bộ phân loại embedding yêu cầu con người dán nhãn thủ công cho từng vector.
+C. Bộ phân loại truyền thống phụ thuộc vào việc từ đó phải xuất hiện ở cả tập huấn luyện và tập kiểm tra.
+D. Không có sự khác biệt nào đáng kể.
+Đáp án đúng: C
+
+Câu 10: Vấn đề chính của việc sử dụng tích vô hướng thô (raw dot product) làm thước đo độ tương đồng là gì?
+A. Không thể xử lý các vector có các chiều trực giao.
+B. Không có khả năng so sánh tài liệu với từ ngữ về mặt toán học.
+C. Có xu hướng ưu tiên các từ xuất hiện thường xuyên vì chúng có vector dài hơn.
+D. Thường tạo ra các giá trị âm khó giải thích.
+Đáp án đúng: C
+
+Câu 11: "Tích vô hướng chuẩn hóa" (normalized dot product) được tính như thế nào?
+A. Bằng cách chia tích vô hướng cho tổng tất cả các giá trị trong vector.
+B. Bằng cách chia tích vô hướng cho độ dài của mỗi vector.
+C. Bằng cách chuyển đổi tất cả các giá trị trong vector thành 1 hoặc 0.
+D. Bằng cách lấy vector dài nhất trừ đi vector ngắn nhất.
+Đáp án đúng: B
+
+Câu 12: Mối quan hệ giữa góc của hai vector và độ tương đồng cosin của chúng là gì?
+A. Góc càng nhỏ, giá trị cosin càng lớn và các từ càng tương đồng.
+B. Góc càng nhỏ, giá trị cosin càng nhỏ và các từ càng ít tương đồng.
+C. Góc càng lớn, giá trị cosin càng lớn và các từ càng tương đồng.
+D. Góc không có mối quan hệ toán học nào với độ tương đồng cosin.
+Đáp án đúng: A

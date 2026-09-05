@@ -1,0 +1,5 @@
+\babel@toc {vietnamese}{}\relax 
+\beamer@sectionintoc {1}{CKY Parsing: A Dynamic Programming Approach}{3}{0}{1}
+\beamer@sectionintoc {2}{Span-Based Neural Constituency Parsing}{19}{0}{2}
+\beamer@sectionintoc {3}{Evaluating Parsers}{31}{0}{3}
+\beamer@sectionintoc {4}{Heads and Head-Finding}{35}{0}{4}
