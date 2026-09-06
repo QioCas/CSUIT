@@ -37,7 +37,7 @@ Danh sách được liệt kê theo từng học kỳ.
 | MA004  | Cấu trúc rời rạc               | - |
 | MA005  | Xác suất thống kê              | Đã cập nhật   |
 | SS007  | Triết học Mác - Lênin          | Đã cập nhật |
-| SS009  | Chủ nghĩa xã hội khoa học      | - |
+| SS009  | Chủ nghĩa xã hội khoa học      | Đã cập nhật |
 
 ### Học kỳ 1 / 2025-2026
 
