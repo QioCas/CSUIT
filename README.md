@@ -24,8 +24,8 @@ Danh sách được liệt kê theo từng học kỳ.
 | IT001  | Nhập môn lập trình                 | Đã cập nhật |
 | MA003  | Đại số tuyến tính                  | Đã cập nhật |
 | MA006  | Giải tích                          | - |
-| SS004  | Kỹ năng nghề nghiệp                | - |
-| SS006  | Pháp luật đại cương                | - |
+| SS004  | Kỹ năng nghề nghiệp                | Đã cập nhật |
+| SS006  | Pháp luật đại cương                | Đã cập nhật |
 
 ### Học kỳ 2 / 2024-2025
 
