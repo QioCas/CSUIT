@@ -1,0 +1,1 @@
+Link video thuyết trình: https://www.youtube.com/watch?v=eTHDcA3lFqw
