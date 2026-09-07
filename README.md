@@ -18,33 +18,33 @@ Danh sách được liệt kê theo từng học kỳ.
 
 ### Học kỳ 1 / 2024-2025
 
-| Mã môn | Tên môn học                        | Ghi chú |
-| ------ | ---------------------------------- | ------- |
-| CS005  | Giới thiệu ngành Khoa học Máy tính | - |
+| Mã môn | Tên môn học                        | Ghi chú     |
+| ------ | ---------------------------------- | ----------- |
+| CS005  | Giới thiệu ngành Khoa học Máy tính | Đã cập nhật |
 | IT001  | Nhập môn lập trình                 | Đã cập nhật |
 | MA003  | Đại số tuyến tính                  | Đã cập nhật |
-| MA006  | Giải tích                          | - |
+| MA006  | Giải tích                          | Đã cập nhật |
 | SS004  | Kỹ năng nghề nghiệp                | Đã cập nhật |
 | SS006  | Pháp luật đại cương                | Đã cập nhật |
 
 ### Học kỳ 2 / 2024-2025
 
-| Mã môn | Tên môn học                    | Ghi chú |
-| ------ | ------------------------------ | ------- |
-| IT003  | Cấu trúc dữ liệu và giải thuật | Đã cập nhật |
-| IT005  | Nhập môn mạng máy tính         | Đã cập nhật |
+| Mã môn | Tên môn học                     | Ghi chú     |
+| ------ | ------------------------------- | ----------- |
+| IT003  | Cấu trúc dữ liệu và giải thuật  | Đã cập nhật |
+| IT005  | Nhập môn mạng máy tính          | Đã cập nhật |
 | IT012  | Tổ chức và cấu trúc máy tính II | Đã cập nhật |
-| MA004  | Cấu trúc rời rạc               | - |
-| MA005  | Xác suất thống kê              | Đã cập nhật   |
-| SS007  | Triết học Mác - Lênin          | Đã cập nhật |
-| SS009  | Chủ nghĩa xã hội khoa học      | Đã cập nhật |
+| MA004  | Cấu trúc rời rạc                | Đã cập nhật |
+| MA005  | Xác suất thống kê               | Đã cập nhật |
+| SS007  | Triết học Mác - Lênin           | Đã cập nhật |
+| SS009  | Chủ nghĩa xã hội khoa học       | Đã cập nhật |
 
 ### Học kỳ 1 / 2025-2026
 
-| Mã môn | Tên môn học                      | Ghi chú |
-| ------ | -------------------------------- | ------- |
-| CS112  | Phân tích và thiết kế thuật toán | Đã cập nhật   |
-| CS115  | Toán cho khoa học máy tính       | Đã cập nhật   |
+| Mã môn | Tên môn học                      | Ghi chú     |
+| ------ | -------------------------------- | ----------- |
+| CS112  | Phân tích và thiết kế thuật toán | Đã cập nhật |
+| CS115  | Toán cho khoa học máy tính       | Đã cập nhật |
 | IT002  | Lập trình hướng đối tượng        | Đã cập nhật |
 | IT004  | Cơ sở dữ liệu                    | Đã cập nhật |
 | IT007  | Hệ điều hành                     | Đã cập nhật |
@@ -52,8 +52,8 @@ Danh sách được liệt kê theo từng học kỳ.
 
 ### Học kỳ 2 / 2025-2026
 
-| Mã môn | Tên môn học                   | Ghi chú |
-| ------ | ----------------------------- | ------- |
+| Mã môn | Tên môn học                   | Ghi chú     |
+| ------ | ----------------------------- | ----------- |
 | CS116  | Lập trình Python cho máy học  | Đã cập nhật |
 | CS117  | Tư duy tính toán              | Đã cập nhật |
 | CS221  | Xử lý ngôn ngữ tự nhiên       | Đã cập nhật |
